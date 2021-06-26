@@ -1,11 +1,11 @@
 package com.navi;
 
-import com.navi.Visual.Pantalla;
+import com.navi.Visual.VisualMenu;
 
 public class Main {
 
     public static void main(String[] args) {
-        Pantalla pantalla = new Pantalla();
-        pantalla.marco();
+        VisualMenu visualMenu = new VisualMenu();
+        visualMenu.marco();
     }
 }

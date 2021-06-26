@@ -1,4 +1,4 @@
-package com.navi.Visual;
+package com.navi.Visual.visualTablero;
 
 import com.navi.tablero.Tablero;
 import com.navi.tablero.casillas.CasillaNula;
@@ -18,8 +18,6 @@ public class VisualTablero extends JPanel implements ActionListener{
     JButton pescar = new JButton("Pescar");
     JButton sembrar = new JButton("Siembra");
 
-    static JLabel hp = new JLabel();
-
 
     public VisualTablero(JPanel panel) {
 
@@ -30,15 +28,14 @@ public class VisualTablero extends JPanel implements ActionListener{
 
         JPanel panel1 = new JPanel(new GridLayout());
 
-        panel1.add(hp);
 
         add(panel1, BorderLayout.NORTH);
 
         panel2.setLayout(new GridLayout(tablero.getX(), tablero.getY()));
 
-        for (int i = 0; i < (n*m) ; i++) {
+        for (int i = 0; i < (tablero.getX() * tablero.getY()) ; i++) {
 
-            ponerBoton();
+            ponerCasilla();
 
         }
 
@@ -64,15 +61,13 @@ public class VisualTablero extends JPanel implements ActionListener{
 
     }
 
-    private void ponerBoton(){
-
+    private void ponerCasilla(){
         VisualCasillas panel;
 
         panel = new VisualCasillas(new CasillaNula());
         panel.setBackground(Color.GREEN);
 
         panel2.add(panel);
-
     }
 
     public void PintarBoton(JButton boton){

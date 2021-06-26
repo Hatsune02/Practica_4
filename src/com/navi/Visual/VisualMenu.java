@@ -1,11 +1,15 @@
 package com.navi.Visual;
 
+import com.navi.Visual.opcionesMenu.VisualReportes;
+import com.navi.jugador.ArregloPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Pantalla extends JFrame implements ActionListener, Pintar{
+public class VisualMenu extends JFrame implements ActionListener, Pintar{
 
+    VisualReportes reportes = new VisualReportes();
     JPanel panelCentral = new JPanel();
     JPanel panelJugar = new JPanel();
     JPanel panelCrearJugador = new JPanel();
@@ -21,7 +25,7 @@ public class Pantalla extends JFrame implements ActionListener, Pintar{
     JLabel menu = new JLabel("", SwingConstants.CENTER);
 
     public void marco(){
-        this.setSize(500,350);
+        this.setSize(675,400);
         this.setLocationRelativeTo(null);
         this.crearElementos();
         this.setTitle("Serpientes y Escaleras");
@@ -35,17 +39,17 @@ public class Pantalla extends JFrame implements ActionListener, Pintar{
 
         menu.setLayout(new BorderLayout());
         menu.setFont(new Font("Open Sans", 3, 25));
-        menu.setText("<html><br/>______________MENÚ_____________<br/><br/></html>");
+        menu.setText("<html><br/><br/><br/>______________MENÚ_____________<br/><br/><br/><br/></html>");
         panelCentral.setLayout(new GridLayout(5,1));
 
-        botonJugar.setPreferredSize(new Dimension(140,30));
-        botonCrearJugador.setPreferredSize(new Dimension(140,30));
-        botonReportes.setPreferredSize(new Dimension(140,30));
-        botonSalir.setPreferredSize(new Dimension(140,30));
+        botonJugar.setPreferredSize(new Dimension(160,35));
+        botonCrearJugador.setPreferredSize(new Dimension(160,35));
+        botonReportes.setPreferredSize(new Dimension(160,35));
+        botonSalir.setPreferredSize(new Dimension(160,35));
         botonRegresar.setPreferredSize(new Dimension(140,30));
 
         botonJugar.setText("JUGAR");
-        botonCrearJugador.setText("Crear Jugador");
+        botonCrearJugador.setText("Ingresar Jugador");
         botonReportes.setText("Reportes");
         botonSalir.setText("Salir");
         botonRegresar.setText("Regresar");
@@ -91,17 +95,52 @@ public class Pantalla extends JFrame implements ActionListener, Pintar{
             JOptionPane.showMessageDialog(null,"JUGARRRRR");
         }
         else if(e.getSource() == botonCrearJugador){
-            JOptionPane.showMessageDialog(null,"CREARRRRR");
+            String nombre = getString("Ingresa el nombre del Jugador");
+            String apellido = getString("Ingresa el apellido del Jugador");
+            if(nombre != null && apellido != null){
+                ArregloPlayer.agregarPlayers(nombre, apellido);
+            }
         }
         else if(e.getSource() == botonReportes){
-            JOptionPane.showMessageDialog(null,"RRRRRREPORTES");
+            this.getContentPane().remove(panelCentral);
+            this.getContentPane().add(reportes, BorderLayout.CENTER);
+            reportes.llenarFilas();
+            reportes = new VisualReportes();
+            botonRegresar.setVisible(true);
+            SwingUtilities.updateComponentTreeUI(this);
         }
         else if(e.getSource() == botonSalir){
-            JOptionPane.showMessageDialog(null,"SALIRRRRR");
+            JOptionPane.showMessageDialog(null,"Adios :3");
         }
         else if(e.getSource() == botonRegresar){
-            JOptionPane.showMessageDialog(null,"REGRESARRRRRR");
+            this.getContentPane().removeAll();
+            this.getContentPane().add(panelCentral, BorderLayout.CENTER);
+            this.getContentPane().add(panelRegresar, BorderLayout.SOUTH);
+            botonRegresar.setVisible(false);
+            SwingUtilities.updateComponentTreeUI(this);
         }
+    }
+
+    public int getIntRango(String titulo, int rango){
+        String n = "";
+        while(n.equals("")){
+            n = JOptionPane.showInputDialog(titulo);
+            if(!n.matches("[1-"+ rango +"]*$")){
+                n = "";
+            }
+        }
+        return Integer.parseInt(n);
+    }
+
+    public String getString(String titulo){
+        String n = "";
+        while(n.equals("")){
+            n = JOptionPane.showInputDialog(titulo);
+            if(!n.matches("[A-Za-z Á-Źá-ź]*$")){
+                n = "";
+            }
+        }
+        return n;
     }
 
 

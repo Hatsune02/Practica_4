@@ -1,4 +1,4 @@
-package com.navi.Visual;
+package com.navi.Visual.visualTablero;
 
 import com.navi.tablero.casillas.Casilla;
 
