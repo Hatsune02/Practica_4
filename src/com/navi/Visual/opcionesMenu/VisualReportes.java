@@ -1,7 +1,6 @@
 package com.navi.Visual.opcionesMenu;
 
 import com.navi.jugador.ArregloPlayer;
-import com.navi.tablero.Tablero;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,9 +19,9 @@ public class VisualReportes extends JPanel {
         if(ArregloPlayer.cantidadPlayers > 0){
             datosFila = new Object[ArregloPlayer.cantidadPlayers][6];
             for (int i = 0; i < ArregloPlayer.cantidadPlayers; i++) {
-                datosFila[i][0] = ArregloPlayer.jugadores[i].getId();
-                datosFila[i][1] = ArregloPlayer.jugadores[i].getNombre();
-                datosFila[i][2] = ArregloPlayer.jugadores[i].getApellido();
+                datosFila[i][0] = ArregloPlayer.jugadores[i].getID();
+                datosFila[i][1] = ArregloPlayer.jugadores[i].getNOMBRE();
+                datosFila[i][2] = ArregloPlayer.jugadores[i].getAPELLIDO();
                 datosFila[i][3] = ArregloPlayer.jugadores[i].getPartidasJugadas();
                 datosFila[i][4] = ArregloPlayer.jugadores[i].getPartidasWin();
                 datosFila[i][5] = ArregloPlayer.jugadores[i].getPartidasLose();
@@ -57,6 +56,8 @@ public class VisualReportes extends JPanel {
         tabla.getColumnModel().getColumn(3).setResizable(false);
         tabla.getColumnModel().getColumn(4).setResizable(false);
         tabla.getColumnModel().getColumn(5).setResizable(false);
+
+        tabla.setRowHeight(20);
     }
 
 }

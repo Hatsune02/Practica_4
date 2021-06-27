@@ -1,79 +1,88 @@
 package com.navi.Visual.visualTablero;
 
 import com.navi.tablero.Tablero;
-import com.navi.tablero.casillas.CasillaNula;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VisualTablero extends JPanel implements ActionListener{
-    Tablero tablero = new Tablero(5,5);
+public class VisualTablero extends JFrame implements ActionListener{
+    Tablero tablero = new Tablero(5,6);
+    int x = 0;
+    int y = 0;
+    JPanel panelNorte = new JPanel(new GridLayout());
+    JPanel panelSur = new JPanel();
+    JPanel panelEste = new JPanel();
+    JPanel panelOeste = new JPanel();
+    JPanel panelTablero = new JPanel();
+    static JLabel tiempo = new JLabel("", SwingConstants.RIGHT);
+    JButton tirarDados = new JButton("Tirar Dados");
 
-    int n = 5;
-    int m = 5;
+    public void marco(){
+        this.setSize(1000,600);
+        this.setLocationRelativeTo(null);
+        this.crearElementos();
+        this.setTitle("Serpientes y Escaleras");
+        this.setVisible(true);
+    }
 
-    JPanel panel2 = new JPanel();
-    JButton pescar = new JButton("Pescar");
-    JButton sembrar = new JButton("Siembra");
+    public void crearElementos() {
+        x = tablero.getX() - 1;
+        y = tablero.getY() - 1;
 
+        tablero.correrTiempo();
+        tiempo.setText("Tiempo de Partida: " + tablero.tiempoActual + "    ");
+        tiempo.setForeground(Color.WHITE);
+        PintarBoton(tirarDados);
 
-    public VisualTablero(JPanel panel) {
+        tablero.casillaPierdeTurno(2,3);
+        tablero.casillaTiraDados(3,2);
+        tablero.casillaAvanzar(0,1,3);
 
-        PintarBoton(pescar);
-        PintarBoton(sembrar);
-
-        setLayout(new BorderLayout());
-
-        JPanel panel1 = new JPanel(new GridLayout());
-
-
-        add(panel1, BorderLayout.NORTH);
-
-        panel2.setLayout(new GridLayout(tablero.getX(), tablero.getY()));
-
-        for (int i = 0; i < (tablero.getX() * tablero.getY()) ; i++) {
-
+        panelTablero.setLayout(new GridLayout(tablero.getY(),tablero.getX()));
+        for (int i = 0; i < (tablero.getX()*tablero.getY()); i++) {
             ponerCasilla();
-
         }
+        panelNorte.add(tiempo);
+        panelSur.add(tirarDados);
+        panelNorte.setBackground(Color.GRAY);
+        panelSur.setBackground(Color.GRAY);
+        panelEste.setBackground(Color.GRAY);
+        panelOeste.setBackground(Color.GRAY);
+        panelTablero.setBackground(Color.GRAY);
 
-        add(panel2, BorderLayout.CENTER);
-
-        JPanel panel3 = new JPanel();
-
-        panel3.add(pescar);
-        panel3.add(sembrar);
-
-
-        add(panel3, BorderLayout.SOUTH);
-
-        JPanel panel4 = new JPanel();
-        JPanel panel5 = new JPanel();
-
-        panel1.setBackground(Color.GRAY);
-        panel3.setBackground(Color.GRAY);
-        panel4.setBackground(Color.GRAY);
-        panel5.setBackground(Color.GRAY);
-        add(panel4, BorderLayout.EAST);
-        add(panel5, BorderLayout.WEST);
+        this.getContentPane().add(panelTablero, BorderLayout.CENTER);
+        this.getContentPane().add(panelNorte, BorderLayout.NORTH);
+        this.getContentPane().add(panelSur, BorderLayout.SOUTH);
+        this.getContentPane().add(panelEste, BorderLayout.EAST);
+        this.getContentPane().add(panelOeste, BorderLayout.WEST);
 
     }
 
     private void ponerCasilla(){
         VisualCasillas panel;
-
-        panel = new VisualCasillas(new CasillaNula());
-        panel.setBackground(Color.GREEN);
-
-        panel2.add(panel);
+        panel = new VisualCasillas(tablero.getCasillas()[y][x]);
+        panel.setBorder(new LineBorder(Color.BLACK));
+        panelTablero.add(panel);
+        x--;
+        if(x < 0){
+            x = tablero.getX() -1;
+            y--;
+        }
     }
 
     public void PintarBoton(JButton boton){
         boton.setBackground(Color.BLACK);
         boton.setForeground(Color.WHITE);
     }
+
+    public static void setHP(int tiempoActual){
+        tiempo.setText("Tiempo de Partida: " + tiempoActual + "    ");
+        SwingUtilities.updateComponentTreeUI(tiempo);
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

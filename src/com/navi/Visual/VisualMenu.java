@@ -1,5 +1,6 @@
 package com.navi.Visual;
 
+import com.navi.Visual.opcionesMenu.VisualJugar;
 import com.navi.Visual.opcionesMenu.VisualReportes;
 import com.navi.jugador.ArregloPlayer;
 
@@ -10,6 +11,7 @@ import java.awt.event.*;
 public class VisualMenu extends JFrame implements ActionListener, Pintar{
 
     VisualReportes reportes = new VisualReportes();
+    VisualJugar juego = new VisualJugar();
     JPanel panelCentral = new JPanel();
     JPanel panelJugar = new JPanel();
     JPanel panelCrearJugador = new JPanel();
@@ -40,13 +42,14 @@ public class VisualMenu extends JFrame implements ActionListener, Pintar{
         menu.setLayout(new BorderLayout());
         menu.setFont(new Font("Open Sans", 3, 25));
         menu.setText("<html><br/><br/><br/>______________MENÚ_____________<br/><br/><br/><br/></html>");
+        menu.setForeground(Color.BLACK);
         panelCentral.setLayout(new GridLayout(5,1));
 
         botonJugar.setPreferredSize(new Dimension(160,35));
         botonCrearJugador.setPreferredSize(new Dimension(160,35));
         botonReportes.setPreferredSize(new Dimension(160,35));
         botonSalir.setPreferredSize(new Dimension(160,35));
-        botonRegresar.setPreferredSize(new Dimension(140,30));
+        botonRegresar.setPreferredSize(new Dimension(160,30));
 
         botonJugar.setText("JUGAR");
         botonCrearJugador.setText("Ingresar Jugador");
@@ -92,7 +95,10 @@ public class VisualMenu extends JFrame implements ActionListener, Pintar{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonJugar){
-            JOptionPane.showMessageDialog(null,"JUGARRRRR");
+            this.getContentPane().remove(panelCentral);
+            this.getContentPane().add(juego, BorderLayout.CENTER);
+            botonRegresar.setVisible(true);
+            SwingUtilities.updateComponentTreeUI(this);
         }
         else if(e.getSource() == botonCrearJugador){
             String nombre = getString("Ingresa el nombre del Jugador");
@@ -111,6 +117,7 @@ public class VisualMenu extends JFrame implements ActionListener, Pintar{
         }
         else if(e.getSource() == botonSalir){
             JOptionPane.showMessageDialog(null,"Adios :3");
+            System.exit(0);
         }
         else if(e.getSource() == botonRegresar){
             this.getContentPane().removeAll();

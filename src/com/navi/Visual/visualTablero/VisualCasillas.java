@@ -1,12 +1,59 @@
 package com.navi.Visual.visualTablero;
 
-import com.navi.tablero.casillas.Casilla;
-
+import com.navi.tablero.casillas.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class VisualCasillas extends JPanel {
     Casilla referencia;
+    JPanel panelNorte = new JPanel();
+    JPanel panelCentral = new JPanel();
+    JLabel nombreCasilla = new JLabel("", SwingConstants.CENTER);
+
     public VisualCasillas(Casilla referencia){
         this.referencia = referencia;
+
+        setLayout(new BorderLayout());
+        panelNorte.add(nombreCasilla);
+        nombreCasilla.setForeground(Color.BLACK);
+
+        if(referencia instanceof CasillaNula){
+            panelNorte.setBackground(Color.CYAN);
+            panelCentral.setBackground(Color.CYAN);
+            nombreCasilla.setText("Casilla Normal");
+        }
+        else if(referencia instanceof Avanza){
+            panelNorte.setBackground(Color.BLUE);
+            panelCentral.setBackground(Color.BLUE);
+            nombreCasilla.setText("Casilla Avanzar");
+        }
+        else if(referencia instanceof Retrocede){
+            panelNorte.setBackground(Color.ORANGE);
+            panelCentral.setBackground(Color.ORANGE);
+            nombreCasilla.setText("Casilla Retroceder");
+        }
+        else if(referencia instanceof PierdeTurno){
+            panelNorte.setBackground(Color.RED);
+            panelCentral.setBackground(Color.RED);
+            nombreCasilla.setText("Pierde Turno");
+        }
+        else if(referencia instanceof TiraDados){
+            panelNorte.setBackground(Color.PINK);
+            panelCentral.setBackground(Color.PINK);
+            nombreCasilla.setText("Tira Dados");
+        }
+        else if(referencia instanceof Subida){
+            panelNorte.setBackground(Color.GREEN);
+            panelCentral.setBackground(Color.GREEN);
+            nombreCasilla.setText("Casilla Subir");
+        }
+        else if(referencia instanceof Bajada){
+            panelNorte.setBackground(Color.WHITE);
+            panelCentral.setBackground(Color.WHITE);
+            nombreCasilla.setText("Casilla Bajar");
+        }
+
+        add(panelNorte, BorderLayout.NORTH);
+        add(panelCentral, BorderLayout.CENTER);
     }
 }

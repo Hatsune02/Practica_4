@@ -9,7 +9,7 @@ public class ArregloPlayer {
     public static void agregarPlayers(String nombre, String apellido){
         if(cantidadPlayers < 6){
             jugadores[cantidadPlayers] = new Player((cantidadPlayers + 1), nombre, apellido);
-            JOptionPane.showMessageDialog(null, "Se ha creado un jugador con:\nid: " + jugadores[cantidadPlayers].getId() + "\nnombre: " + jugadores[cantidadPlayers].getNombre() + "\napellidos: " + jugadores[cantidadPlayers].getApellido());
+            JOptionPane.showMessageDialog(null, "Se ha creado un jugador con:\nid: " + jugadores[cantidadPlayers].getID() + "\nnombre: " + jugadores[cantidadPlayers].getNOMBRE() + "\napellidos: " + jugadores[cantidadPlayers].getAPELLIDO());
             cantidadPlayers++;
         }
         else{

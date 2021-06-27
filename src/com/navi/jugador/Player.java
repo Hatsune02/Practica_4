@@ -1,30 +1,23 @@
 package com.navi.jugador;
 
+import com.navi.Visual.visualTablero.VisualCasillas;
+
 public class Player {
-    private int id;
-    private String nombre;
-    private String apellido;
+    private final int ID;
+    private final String NOMBRE;
+    private final String APELLIDO;
     private int partidasJugadas = 0;
     private int partidasWin = 0;
     private int partidasLose = 0;
+    VisualCasillas actual;
 
     public Player(int id, String nombre, String apellido){
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.ID = id;
+        this.NOMBRE = nombre;
+        this.APELLIDO = apellido;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
 
     public void setPartidasJugadas(int partidasJugadas) {
         this.partidasJugadas = partidasJugadas;
@@ -38,16 +31,16 @@ public class Player {
         this.partidasLose = partidasLose;
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNOMBRE() {
+        return NOMBRE;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getAPELLIDO() {
+        return APELLIDO;
     }
 
     public int getPartidasJugadas() {
