@@ -6,6 +6,7 @@ import com.navi.Lectura.LeerObjetos;
 import com.navi.Visual.opcionesMenu.VisualJugar;
 import com.navi.Visual.opcionesMenu.VisualReportes;
 import com.navi.jugador.ArregloPlayer;
+import com.navi.jugador.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -98,6 +99,11 @@ public class VisualMenu extends JFrame implements ActionListener, Pintar{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonJugar){
+            int jugadoresTablero = getIntRango("Ingresar la cantidad de jugadores que jugaran   ", ArregloPlayer.cantidadPlayers);
+            for (int i = 0; i < jugadoresTablero; i++) {
+                int posicion = getIntRango(ArregloPlayer.mostrarJugadores() + "Ingresa que jugador entrara",ArregloPlayer.cantidadPlayers);
+                ArregloPlayer.agregarPlayersPartida(posicion);
+            }
             this.getContentPane().remove(panelCentral);
             this.getContentPane().add(juego, BorderLayout.CENTER);
             botonRegresar.setVisible(true);

@@ -33,8 +33,8 @@ public class LeerObjetos {
 
         }
         catch (Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al cargar el archivo");
-            System.out.println(ex);
+            //JOptionPane.showMessageDialog(null, "Error al cargar el archivo");
+            //System.out.println(ex);
         }
     }
 

@@ -43,7 +43,9 @@ public class VisualJugar extends JPanel implements ActionListener, Pintar {
         if(e.getSource() == botonCargarTexto){
             LecturaTexto.LeerArchivos();
             tablero = new VisualTablero();
-            tablero.marco();
+            if(VisualTablero.tablero != null){
+                tablero.marco();
+            }
 
         }
     }
