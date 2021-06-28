@@ -19,7 +19,6 @@ public class LeerObjetos {
 
         try{
             ObjectInputStream lector;
-            System.out.println("Archivos: "+archivos.length);
 
             for (int i = 0; i < archivos.length; i++) {
                 String archivo = archivos[i];

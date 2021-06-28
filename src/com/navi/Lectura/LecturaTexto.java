@@ -14,22 +14,24 @@ import java.util.Date;
 
 public class LecturaTexto {
 
-    static String[][] tablero = new String[1000][];
+    static String[][] tablero = new String[100][];
     static int cantidadTableros = 0;
-    static String[][] casillasAvanzar = new String[1000][];
+    static String[][] casillasAvanzar = new String[100][];
     static int cantidadCasillasAvanzar = 0;
-    static String[][] casillasRetroceder = new String[1000][];
+    static String[][] casillasRetroceder = new String[100][];
     static int cantidadCasillasRetroceder = 0;
-    static String[][] casillasPierdeTurno = new String[1000][];
+    static String[][] casillasPierdeTurno = new String[100][];
     static int cantidadCasillasPierdeTurno = 0;
-    static String[][] casillasTiraDados = new String[1000][];
+    static String[][] casillasTiraDados = new String[100][];
     static int cantidadCasillasTiraDados = 0;
-    static String[][] casillasSubida = new String[1000][];
+    static String[][] casillasSubida = new String[100][];
     static int cantidadCasillasSubida = 0;
-    static String[][] casillasBajada = new String[1000][];
+    static String[][] casillasBajada = new String[100][];
     static int cantidadCasillasBajada = 0;
 
-
+    public static void main(String[] args){
+        LeerArchivos();
+    }
     public static void LeerArchivos(){
 
         JFileChooser cargar = new JFileChooser();
@@ -57,7 +59,7 @@ public class LecturaTexto {
                         casillasPierdeTurno[cantidadCasillasAvanzar] = datos;
                         cantidadCasillasPierdeTurno++;
                         break;
-                    case "TIRADADOS":
+                    case "TIRARDADOS":
                         casillasTiraDados[cantidadCasillasTiraDados] = datos;
                         cantidadCasillasTiraDados++;
                         break;
@@ -77,8 +79,8 @@ public class LecturaTexto {
                         casillasBajada[cantidadCasillasBajada] = datos;
                         cantidadCasillasBajada++;
                         break;
-
                 }
+                lectura = entrada.readLine();
             }
             entrada.close();
         }
@@ -189,9 +191,15 @@ public class LecturaTexto {
             else{
                 VisualTablero.tablero.casillaBajar(Integer.parseInt(casillasBajada[i][1]), Integer.parseInt(casillasBajada[i][2]), Integer.parseInt(casillasBajada[i][3]), Integer.parseInt(casillasBajada[i][4]));
             }
-
         }
 
+        cantidadTableros = 0;
+        cantidadCasillasAvanzar = 0;
+        cantidadCasillasRetroceder = 0;
+        cantidadCasillasSubida = 0;
+        cantidadCasillasBajada = 0;
+        cantidadCasillasTiraDados = 0;
+        cantidadCasillasPierdeTurno = 0;
     }
 
     public static String[] probar(String a, String linea){

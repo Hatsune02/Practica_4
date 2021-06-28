@@ -63,9 +63,6 @@ public class Tablero implements Runnable{
         t = new Thread(this);
         t.start();
     }
-    public void pararTiempo(){
-
-    }
 
     public int getX() {
         return x;

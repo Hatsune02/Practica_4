@@ -1,5 +1,6 @@
 package com.navi.Visual.opcionesMenu;
 
+import com.navi.Lectura.LecturaTexto;
 import com.navi.Visual.Pintar;
 import com.navi.Visual.visualTablero.VisualTablero;
 
@@ -40,6 +41,7 @@ public class VisualJugar extends JPanel implements ActionListener, Pintar {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonCargarTexto){
+            LecturaTexto.LeerArchivos();
             tablero = new VisualTablero();
             tablero.marco();
 

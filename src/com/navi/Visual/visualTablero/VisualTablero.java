@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VisualTablero extends JFrame implements ActionListener{
-    public static Tablero tablero = new Tablero(5,6);
+    public static Tablero tablero;
     int x = 0;
     int y = 0;
     int numeroCasillas = 1;
@@ -39,10 +39,6 @@ public class VisualTablero extends JFrame implements ActionListener{
         tiempo.setText("Tiempo de Partida: " + tablero.tiempoActual + "    ");
         tiempo.setForeground(Color.WHITE);
         PintarBoton(tirarDados);
-
-        tablero.casillaPierdeTurno(2,3);
-        tablero.casillaTiraDados(3,2);
-        tablero.casillaAvanzar(0,1,3);
 
         panelTablero.setLayout(new GridLayout(tablero.getY(),tablero.getX()));
         for (int i = 0; i < (tablero.getX()*tablero.getY()); i++) {
