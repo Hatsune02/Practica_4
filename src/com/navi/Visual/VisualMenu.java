@@ -1,6 +1,8 @@
 package com.navi.Visual;
 
 import com.navi.Lectura.GuardarObjetos;
+import com.navi.Lectura.LecturaTexto;
+import com.navi.Lectura.LeerObjetos;
 import com.navi.Visual.opcionesMenu.VisualJugar;
 import com.navi.Visual.opcionesMenu.VisualReportes;
 import com.navi.jugador.ArregloPlayer;
@@ -39,7 +41,7 @@ public class VisualMenu extends JFrame implements ActionListener, Pintar{
 
 
     private void crearElementos() {
-
+        LeerObjetos.abrirObjeto("Jugadores");
         menu.setLayout(new BorderLayout());
         menu.setFont(new Font("Open Sans", 3, 25));
         menu.setText("<html><br/><br/><br/>______________MENÚ_____________<br/><br/><br/><br/></html>");

@@ -29,9 +29,6 @@ public class LecturaTexto {
     static String[][] casillasBajada = new String[1000][];
     static int cantidadCasillasBajada = 0;
 
-    public static void main(String[] args) {
-        LeerArchivos();
-    }
 
     public static void LeerArchivos(){
 
@@ -82,8 +79,6 @@ public class LecturaTexto {
                         break;
 
                 }
-                System.out.println(lectura);
-                lectura = entrada.readLine();
             }
             entrada.close();
         }
@@ -206,7 +201,6 @@ public class LecturaTexto {
         String b[] = a.split(",");
         for (int i = 0; i <b.length ; i++) {
             b[i] = b[i].trim().toUpperCase();
-            System.out.println(b[i]);
         }
         return b;
     }

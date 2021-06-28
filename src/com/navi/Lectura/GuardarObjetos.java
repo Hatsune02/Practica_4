@@ -7,14 +7,11 @@ import java.io.*;
 public class GuardarObjetos {
 
     public static String directorio = System.getProperty("user.dir");
-    
+
     public static void GuardarObjetos(Object objeto){
 
         File archivo = new File(directorio + "/Jugadores");
         archivo.mkdir();
-
-        System.out.println(directorio);
-        System.out.println(archivo.getPath());
 
         try{
             ObjectOutputStream fichero;

@@ -1,41 +1,33 @@
 package com.navi.Lectura;
 
 
+import com.navi.jugador.ArregloPlayer;
+import com.navi.jugador.Player;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 
 public class LeerObjetos {
-
-
-    public static void main(String[] args) {
-
-    }
+    static Player jugador;
 
     public static void abrirObjeto(String carpeta){
 
-        //Abrir archivos binarios con la opción de elegir el archivo
-        //JFileChooser cargar = new JFileChooser();
-
-        //FileNameExtensionFilter filtro = new FileNameExtensionFilter(descripcion,extension);
-        //cargar.setFileFilter(filtro);
-        //cargar.showOpenDialog(null);
-        //cargar.setFileSelectionMode(JFileChooser.APPROVE_OPTION);
-
-        String directorio1 = GuardarObjetos.directorio + "/"+carpeta;
-        File archivoo = new File(directorio1); //Abrir con dirección directa
-        //File archivoo = cargar.getSelectedFile();
-        String[] archivos=archivoo.list();
+        String directorio = GuardarObjetos.directorio + "/"+carpeta;
+        File archivoo = new File(directorio); //Abrir con dirección directa
+        String[] archivos = archivoo.list();
 
         try{
             ObjectInputStream lector;
-            System.out.println("Archivos:"+archivos.length);
+            System.out.println("Archivos: "+archivos.length);
 
             for (int i = 0; i < archivos.length; i++) {
                 String archivo = archivos[i];
-                //lector = new ObjectInputStream(new FileInputStream(cargar.getSelectedFile()+"/"+archivo));
                 lector = new ObjectInputStream(new FileInputStream(archivoo.getPath()+"/"+archivo));
-
+                if(carpeta.equals("Jugadores")){
+                    jugador = (Player) lector.readObject();
+                    ArregloPlayer.agregarPlayersLectura(jugador.getID(), jugador.getNOMBRE(), jugador.getAPELLIDO());
+                }
                 lector.close();
 
             }
