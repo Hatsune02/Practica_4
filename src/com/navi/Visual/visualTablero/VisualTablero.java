@@ -1,5 +1,6 @@
 package com.navi.Visual.visualTablero;
 
+import com.navi.jugador.ArregloPlayer;
 import com.navi.tablero.Tablero;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 
 public class VisualTablero extends JFrame implements ActionListener{
     public static Tablero tablero;
+    public static VisualCasillas[][] casillasVisuales;
     int x = 0;
     int y = 0;
     int numeroCasillas = 1;
@@ -21,6 +23,7 @@ public class VisualTablero extends JFrame implements ActionListener{
     JLabel dado1 = new JLabel();
     JLabel dado2 = new JLabel();
     static JLabel tiempo = new JLabel("", SwingConstants.RIGHT);
+    JTextField informacion = new JTextField("", SwingConstants.CENTER);
     JButton tirarDados = new JButton("Tirar Dados");
 
     public void marco(){
@@ -32,20 +35,28 @@ public class VisualTablero extends JFrame implements ActionListener{
     }
 
     public void crearElementos() {
-        //x = tablero.getX() - 1;
-        y = tablero.getY() - 1;
 
+        y = tablero.getY() - 1;
+        casillasVisuales = new VisualCasillas[tablero.getY()][tablero.getX()];
+        panelSur.setLayout(new GridLayout());
+        informacion.setPreferredSize(new Dimension(200, 50));
         tablero.correrTiempo();
         tiempo.setText("Tiempo de Partida: " + tablero.tiempoActual + "    ");
         tiempo.setForeground(Color.WHITE);
         PintarBoton(tirarDados);
+        tirarDados.setPreferredSize(new Dimension(150,35));
+        tablero.casillaAvanzar(0,0,3);
 
         panelTablero.setLayout(new GridLayout(tablero.getY(),tablero.getX()));
         for (int i = 0; i < (tablero.getX()*tablero.getY()); i++) {
             ponerCasilla();
         }
+        ArregloPlayer.jugadores[0].setActual(casillasVisuales[0][0]);
+        ArregloPlayer.jugadores[0].colocarJugador(casillasVisuales[0][0]);
+
         panelNorte.add(tiempo);
         panelSur.add(tirarDados);
+        panelSur.add(informacion);
         panelNorte.setBackground(Color.GRAY);
         panelSur.setBackground(Color.GRAY);
         panelEste.setBackground(Color.GRAY);
@@ -58,13 +69,14 @@ public class VisualTablero extends JFrame implements ActionListener{
         this.getContentPane().add(panelEste, BorderLayout.EAST);
         this.getContentPane().add(panelOeste, BorderLayout.WEST);
 
+        tirarDados.addActionListener(this);
     }
 
     private void ponerCasilla(){
-        VisualCasillas panel;
-        panel = new VisualCasillas(tablero.getCasillas()[y][x]);
-        panel.setBorder(new LineBorder(Color.BLACK));
-        panelTablero.add(panel);
+
+        casillasVisuales[y][x] = new VisualCasillas(tablero.getCasillas()[y][x]);
+        casillasVisuales[y][x].setBorder(new LineBorder(Color.BLACK));
+        panelTablero.add(casillasVisuales[y][x]);
         x++;
         if(x == tablero.getX()){
             x = 0;
@@ -82,12 +94,20 @@ public class VisualTablero extends JFrame implements ActionListener{
         SwingUtilities.updateComponentTreeUI(tiempo);
     }
 
+    public int generaNumeroR(int minimo, int maximo) {
 
+        int num = (int) Math.floor(Math.random() * (maximo - minimo + 1) + (minimo));
+        return num;
+
+    }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == tirarDados){
+            int n = generaNumeroR(1, 6);
+            informacion.setText("El numero del dado es " + n);
+        }
     }
 
 }

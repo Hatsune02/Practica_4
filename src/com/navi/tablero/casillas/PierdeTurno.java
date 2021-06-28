@@ -9,6 +9,6 @@ public class PierdeTurno extends Casilla{
 
     @Override
     public void accion(Player jugador) {
-
+        jugador.turno = false;
     }
 }

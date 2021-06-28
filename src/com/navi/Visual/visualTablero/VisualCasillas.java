@@ -5,9 +5,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VisualCasillas extends JPanel {
-    Casilla referencia;
+    public Casilla referencia;
     JPanel panelNorte = new JPanel();
-    JPanel panelCentral = new JPanel();
+    public JPanel panelCentral = new JPanel();
     JLabel nombreCasilla = new JLabel("", SwingConstants.CENTER);
     JLabel numeroCasilla = new JLabel("", SwingConstants.LEFT);
 

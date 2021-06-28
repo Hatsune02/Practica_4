@@ -1,5 +1,6 @@
 package com.navi.tablero.casillas;
 
+import com.navi.Visual.visualTablero.VisualTablero;
 import com.navi.jugador.Player;
 
 public class Retrocede extends Casilla{
@@ -11,6 +12,20 @@ public class Retrocede extends Casilla{
 
     @Override
     public void accion(Player jugador) {
+        boolean encontrado = false;
+        Casilla[][] tablero = VisualTablero.tablero.getCasillas();
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                if(tablero[j][i].getNumeroCasilla() == jugador.casillaActual.referencia.getNumeroCasilla() - posicion){
 
+                    jugador.colocarJugador(VisualTablero.casillasVisuales[j][i]);
+                    encontrado = true;
+                    break;
+                }
+            }
+            if(encontrado){
+                break;
+            }
+        }
     }
 }
