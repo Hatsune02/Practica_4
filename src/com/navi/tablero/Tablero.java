@@ -8,6 +8,7 @@ public class Tablero implements Runnable{
     private int x;
     private int y;
     private Casilla[][] casillas;
+    Thread t = new Thread(this);
 
     public Tablero(int x, int y){
         this.x = x;
@@ -17,41 +18,53 @@ public class Tablero implements Runnable{
     }
 
     public void llenarTablero(){
+        int n = 1;
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < x; j++) {
-                casillas[i][j] = new CasillaNula(j,i);
+                casillas[i][j] = new CasillaNula(j,i,n);
+                n++;
             }
         }
     }
 
     public void casillaAvanzar(int x, int y, int posicion){
-        casillas[y][x] = new Avanza(x, y , posicion);
+        int n = casillas[y][x].getNumeroCasilla();
+        casillas[y][x] = new Avanza(x, y , posicion, n);
     }
 
     public void casillaRetroceder(int x, int y, int posicion){
-        casillas[y][x] = new Retrocede(x,y, posicion);
+        int n = casillas[y][x].getNumeroCasilla();
+        casillas[y][x] = new Retrocede(x,y, posicion, n);
     }
 
     public void casillaPierdeTurno(int x, int y){
-        casillas[y][x] = new PierdeTurno(x,y);
+        int n = casillas[y][x].getNumeroCasilla();
+        casillas[y][x] = new PierdeTurno(x,y, n);
     }
 
     public void casillaTiraDados(int x, int y){
-        casillas[y][x] = new TiraDados(x,y);
+        int n = casillas[y][x].getNumeroCasilla();
+        casillas[y][x] = new TiraDados(x,y, n);
     }
 
     public void casillaSubir(int x, int y, int xFinal, int yFinal){
-        casillas[y][x] = new Subida(x,y,xFinal,yFinal);
+        int n = casillas[y][x].getNumeroCasilla();
+        casillas[y][x] = new Subida(x,y,xFinal,yFinal, n);
     }
 
     public void casillaBajar(int x, int y, int xFinal, int yFinal){
-        casillas[y][x] = new Bajada(x,y,xFinal,yFinal);
+        int n = casillas[y][x].getNumeroCasilla();
+        casillas[y][x] = new Bajada(x,y,xFinal,yFinal, n);
     }
 
     public void correrTiempo(){
         tiempoActual = 0;
-        Thread t = new Thread(this);
+        t.interrupt();
+        t = new Thread(this);
         t.start();
+    }
+    public void pararTiempo(){
+
     }
 
     public int getX() {
@@ -76,14 +89,17 @@ public class Tablero implements Runnable{
 
     @Override
     public void run() {
-        while (tiempoActual < 1000){
+        while (tiempoActual < 100000){
+            if(Thread.currentThread().isInterrupted()){
+                break;
+            }
             tiempoActual++;
             VisualTablero.setHP(tiempoActual);
 
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e){
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
 

@@ -5,8 +5,8 @@ import com.navi.jugador.Player;
 public class CasillaNula extends Casilla{
 
 
-    public CasillaNula(int x, int y) {
-        super(x, y);
+    public CasillaNula(int x, int y, int numeroCasilla) {
+        super(x, y, numeroCasilla);
     }
 
     @Override

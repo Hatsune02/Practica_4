@@ -12,11 +12,14 @@ public class VisualTablero extends JFrame implements ActionListener{
     Tablero tablero = new Tablero(5,6);
     int x = 0;
     int y = 0;
+    int numeroCasillas = 1;
     JPanel panelNorte = new JPanel(new GridLayout());
     JPanel panelSur = new JPanel();
     JPanel panelEste = new JPanel();
     JPanel panelOeste = new JPanel();
     JPanel panelTablero = new JPanel();
+    JLabel dado1 = new JLabel();
+    JLabel dado2 = new JLabel();
     static JLabel tiempo = new JLabel("", SwingConstants.RIGHT);
     JButton tirarDados = new JButton("Tirar Dados");
 
@@ -29,7 +32,7 @@ public class VisualTablero extends JFrame implements ActionListener{
     }
 
     public void crearElementos() {
-        x = tablero.getX() - 1;
+        //x = tablero.getX() - 1;
         y = tablero.getY() - 1;
 
         tablero.correrTiempo();
@@ -66,9 +69,9 @@ public class VisualTablero extends JFrame implements ActionListener{
         panel = new VisualCasillas(tablero.getCasillas()[y][x]);
         panel.setBorder(new LineBorder(Color.BLACK));
         panelTablero.add(panel);
-        x--;
-        if(x < 0){
-            x = tablero.getX() -1;
+        x++;
+        if(x == tablero.getX()){
+            x = 0;
             y--;
         }
     }
@@ -82,6 +85,8 @@ public class VisualTablero extends JFrame implements ActionListener{
         tiempo.setText("Tiempo de Partida: " + tiempoActual + "    ");
         SwingUtilities.updateComponentTreeUI(tiempo);
     }
+
+
 
 
     @Override

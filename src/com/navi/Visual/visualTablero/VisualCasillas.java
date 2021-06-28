@@ -9,14 +9,17 @@ public class VisualCasillas extends JPanel {
     JPanel panelNorte = new JPanel();
     JPanel panelCentral = new JPanel();
     JLabel nombreCasilla = new JLabel("", SwingConstants.CENTER);
+    JLabel numeroCasilla = new JLabel("", SwingConstants.LEFT);
 
     public VisualCasillas(Casilla referencia){
         this.referencia = referencia;
 
         setLayout(new BorderLayout());
-        panelNorte.add(nombreCasilla);
+        panelNorte.setLayout(new BorderLayout());
+        panelNorte.add(nombreCasilla, BorderLayout.CENTER);
+        panelNorte.add(numeroCasilla, BorderLayout.WEST);
         nombreCasilla.setForeground(Color.BLACK);
-
+        numeroCasilla.setForeground(Color.BLACK);
         if(referencia instanceof CasillaNula){
             panelNorte.setBackground(Color.CYAN);
             panelCentral.setBackground(Color.CYAN);
@@ -52,6 +55,8 @@ public class VisualCasillas extends JPanel {
             panelCentral.setBackground(Color.WHITE);
             nombreCasilla.setText("Casilla Bajar");
         }
+
+        numeroCasilla.setText(" " + referencia.getNumeroCasilla());
 
         add(panelNorte, BorderLayout.NORTH);
         add(panelCentral, BorderLayout.CENTER);

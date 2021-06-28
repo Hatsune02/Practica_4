@@ -5,8 +5,8 @@ import com.navi.jugador.Player;
 public class Bajada extends Casilla{
     public int xFinal;
     public int yFinal;
-    public Bajada(int x, int y, int xFinal, int yFinal) {
-        super(x, y);
+    public Bajada(int x, int y, int xFinal, int yFinal, int numeroCasilla) {
+        super(x, y, numeroCasilla);
         this.xFinal = xFinal;
         this.yFinal = yFinal;
     }
