@@ -9,7 +9,7 @@ public class LeerObjetos {
 
 
     public static void main(String[] args) {
-        
+
     }
 
     public static void abrirObjeto(String carpeta){

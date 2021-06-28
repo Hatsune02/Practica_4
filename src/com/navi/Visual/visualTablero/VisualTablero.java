@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VisualTablero extends JFrame implements ActionListener{
-    Tablero tablero = new Tablero(5,6);
+    public static Tablero tablero = new Tablero(5,6);
     int x = 0;
     int y = 0;
     int numeroCasillas = 1;
