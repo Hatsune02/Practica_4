@@ -1,6 +1,8 @@
 package com.navi.Lectura;
 
 
+import com.navi.jugador.Player;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
@@ -10,7 +12,8 @@ public class GuardarObjetos {
     public static String directorio = System.getProperty("user.dir");
 
     public static void main(String[] args) {
-
+        Player jugador = new Player(1,"Juan","Sierra");
+        GuardarObjetos(jugador);
         //abrirObjeto("un carro del juego", "carro");
     }
 
@@ -23,18 +26,22 @@ public class GuardarObjetos {
         File archivo = guardar.getSelectedFile();
 
          */
-
-        File archivo = new File(directorio + "/Avion");
-        File archivo1 = new File(directorio + "/Aeropuerto");
-
-
+        File archivo = new File(directorio + "/Jugadores");
         archivo.mkdir();
-        archivo1.mkdir();
+
+        System.out.println(directorio);
+        System.out.println(archivo.getPath());
 
         try{
             String archivos[] = archivo.list();
+            ObjectOutputStream fichero;
 
-            ObjectOutputStream fichero = new ObjectOutputStream(new FileOutputStream(archivo.getPath()+ "." + "objeto"));
+            if(objeto instanceof Player){
+                fichero = new ObjectOutputStream(new FileOutputStream(archivo.getPath()+ "/"+ ((Player) objeto).getNOMBRE() +"." + "jugador"));
+            }
+            else{
+                fichero = null;
+            }
 
             //ObjectOutputStream fichero = new ObjectOutputStream(new FileOutputStream(archivo.getPath()+ "." + "avion"));
             //ObjectOutputStream fichero = new ObjectOutputStream(new FileOutputStream(archivo.getPath()));

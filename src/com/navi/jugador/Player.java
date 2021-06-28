@@ -1,8 +1,9 @@
 package com.navi.jugador;
 
 import com.navi.Visual.visualTablero.VisualCasillas;
+import java.io.Serializable;
 
-public class Player {
+public class Player implements Serializable {
     private final int ID;
     private final String NOMBRE;
     private final String APELLIDO;
