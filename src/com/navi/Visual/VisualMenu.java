@@ -1,5 +1,6 @@
 package com.navi.Visual;
 
+import com.navi.Lectura.GuardarObjetos;
 import com.navi.Visual.opcionesMenu.VisualJugar;
 import com.navi.Visual.opcionesMenu.VisualReportes;
 import com.navi.jugador.ArregloPlayer;
@@ -116,6 +117,9 @@ public class VisualMenu extends JFrame implements ActionListener, Pintar{
             SwingUtilities.updateComponentTreeUI(this);
         }
         else if(e.getSource() == botonSalir){
+            for (int i = 0; i < ArregloPlayer.cantidadPlayers; i++) {
+                GuardarObjetos.GuardarObjetos(ArregloPlayer.jugadores[i]);
+            }
             JOptionPane.showMessageDialog(null,"Adios :3");
             System.exit(0);
         }
