@@ -63,7 +63,7 @@ public class Player implements Serializable, Pintar, ActionListener {
                     String tipoCasilla = compararCasillas(casillaActual.referencia);
                     informacion.setText(info + "El número del dado es " + numeroDado + "\n" + NOMBRE +" se movio a la casilla: " + casillaActual.referencia.getNumeroCasilla() + "\n" + tipoCasilla);
                     casillaActual.referencia.accion(this);
-                    if(!(casillaActual.referencia instanceof CasillaNula)){
+                    if(!(casillaActual.referencia instanceof CasillaNula) && !(casillaActual.referencia instanceof PierdeTurno) && !(casillaActual.referencia instanceof TiraDados)){
                         info = informacion.getText();
                         tipoCasilla = compararCasillas(casillaActual.referencia);
                         informacion.setText(info + "La anterior casillas movio la ficha a la casillas:  " + casillaActual.referencia.getNumeroCasilla() + "\n" + tipoCasilla);
