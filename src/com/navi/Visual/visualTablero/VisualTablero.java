@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class VisualTablero extends JFrame implements ActionListener, Pintar {
     public static Tablero tablero;
     public static VisualCasillas[][] casillasVisuales;
+    public static boolean ganador = false;
     int x = 0;
     int y = 0;
     JPanel panelNorte = new JPanel(new GridLayout());
@@ -50,8 +51,6 @@ public class VisualTablero extends JFrame implements ActionListener, Pintar {
         tiempo.setForeground(Color.WHITE);
         pintarBoton(tirarDados);
         tirarDados.setPreferredSize(new Dimension(150,35));
-        tablero.casillaAvanzar(0,0,3);
-        //panelTablero.setPreferredSize(new Dimension(700, 2000));
         scrollPane.setViewportView(panelTablero);
         panelTablero.setLayout(new GridLayout(tablero.getY(),tablero.getX()));
         panelTirarDados.add(tirarDados);
@@ -160,6 +159,24 @@ public class VisualTablero extends JFrame implements ActionListener, Pintar {
                     }
                     break;
                 }
+            }
+
+            if(ganador){
+                tablero.pararTiempo();
+                for (int i = 0; i < ArregloPlayer.cantidadPlayersPartida; i++) {
+                    if(ArregloPlayer.jugadoresPartida[i].ganador){
+                        JOptionPane.showMessageDialog(null, "Ganaste : " + ArregloPlayer.jugadoresPartida[i].getNOMBRE());
+                        break;
+                    }
+                }
+                for (int i = 0; i < ArregloPlayer.cantidadPlayersPartida; i++) {
+                    if(!ArregloPlayer.jugadoresPartida[i].ganador){
+                        ArregloPlayer.jugadoresPartida[i].sumarPartidasLose();
+                        ArregloPlayer.jugadoresPartida[i].sumarPartidasJugadas();
+                    }
+                }
+                ArregloPlayer.cantidadPlayersPartida = 0;
+                this.setVisible(false);
             }
             mostrarTurnoActual();
             SwingUtilities.updateComponentTreeUI(this);

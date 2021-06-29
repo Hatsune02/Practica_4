@@ -16,9 +16,9 @@ public class Retrocede extends Casilla{
         Casilla[][] tablero = VisualTablero.tablero.getCasillas();
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[i].length; j++) {
-                if(tablero[j][i].getNumeroCasilla() == jugador.casillaActual.referencia.getNumeroCasilla() - posicion){
+                if(tablero[i][j].getNumeroCasilla() == jugador.casillaActual.referencia.getNumeroCasilla() - posicion){
 
-                    jugador.colocarJugador(VisualTablero.casillasVisuales[j][i]);
+                    jugador.colocarJugador(VisualTablero.casillasVisuales[i][j]);
                     encontrado = true;
                     break;
                 }

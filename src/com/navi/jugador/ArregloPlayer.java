@@ -23,7 +23,7 @@ public class ArregloPlayer {
     public static void agregarPlayersPartida(int posicion){
         for (int i = 0; i < cantidadPlayers; i++) {
             if(posicion == i+1){
-                jugadoresPartida[cantidadPlayersPartida] = jugadores[i];x`
+                jugadoresPartida[cantidadPlayersPartida] = jugadores[i];
                 cantidadPlayersPartida++;
                 break;
             }
@@ -33,7 +33,7 @@ public class ArregloPlayer {
     public static String mostrarJugadores(){
         String texto = "";
         for (int i = 0; i < cantidadPlayers; i++) {
-            texto = texto + "ID:\t" + jugadores[i].getID() + "\tNombre:\t" + jugadores[i].getNOMBRE()+"\n";
+            texto = texto + "ID:\t" + jugadores[i].getID() + "\t Nombre: \t" + jugadores[i].getNOMBRE()+"\n";
         }
         return texto;
     }

@@ -22,6 +22,7 @@ public class Player implements Serializable, Pintar, ActionListener {
     public VisualCasillas casillaActual;
     JButton botonPlayer = new JButton();
     public boolean turno = false;
+    public boolean ganador = false;
     public int turnoPerdido = 0;
 
     public Player(int id, String nombre, String apellido){
@@ -99,16 +100,16 @@ public class Player implements Serializable, Pintar, ActionListener {
         this.casillaActual = actual;
     }
 
-    public void setPartidasJugadas(int partidasJugadas) {
-        this.partidasJugadas = partidasJugadas;
+    public void sumarPartidasJugadas() {
+        this.partidasJugadas++;
     }
 
-    public void setPartidasWin(int partidasWin) {
-        this.partidasWin = partidasWin;
+    public void sumarPartidasWin() {
+        this.partidasWin++;
     }
 
-    public void setPartidasLose(int partidasLose) {
-        this.partidasLose = partidasLose;
+    public void sumarPartidasLose() {
+        this.partidasLose++;
     }
 
     public int getID() {

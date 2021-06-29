@@ -21,7 +21,12 @@ public class Tablero implements Runnable{
         int n = 1;
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < x; j++) {
-                casillas[i][j] = new CasillaNula(j,i,n);
+                if(i == (y - 1) && j == (x - 1)){
+                    casillas[i][j] = new CasillaFinal(j,i,n);
+                }
+                else{
+                    casillas[i][j] = new CasillaNula(j,i,n);
+                }
                 n++;
             }
         }
@@ -62,6 +67,11 @@ public class Tablero implements Runnable{
         t.interrupt();
         t = new Thread(this);
         t.start();
+    }
+
+    public void pararTiempo(){
+        tiempoActual = 0;
+        t.interrupt();
     }
 
     public int getX() {

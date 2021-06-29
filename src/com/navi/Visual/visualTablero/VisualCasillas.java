@@ -55,6 +55,11 @@ public class VisualCasillas extends JPanel {
             panelCentral.setBackground(Color.WHITE);
             nombreCasilla.setText("Casilla Bajar");
         }
+        else if(referencia instanceof CasillaFinal){
+            panelNorte.setBackground(Color.BLACK);
+            panelCentral.setBackground(Color.BLACK);
+            nombreCasilla.setText(" FINAL ");
+        }
 
         numeroCasilla.setText(" " + referencia.getNumeroCasilla());
 
