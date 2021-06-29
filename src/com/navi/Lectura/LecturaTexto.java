@@ -56,7 +56,7 @@ public class LecturaTexto {
                         cantidadTableros++;
                         break;
                     case "PIERDETURNO":
-                        casillasPierdeTurno[cantidadCasillasAvanzar] = datos;
+                        casillasPierdeTurno[cantidadCasillasPierdeTurno] = datos;
                         cantidadCasillasPierdeTurno++;
                         break;
                     case "TIRARDADOS":

@@ -44,7 +44,7 @@ public class VisualTablero extends JFrame implements ActionListener, Pintar {
         casillasVisuales = new VisualCasillas[tablero.getY()][tablero.getX()];
         scrollPane.setBounds(50, 30, 300, 50);
         panelSur.setLayout(new GridLayout(1,3));
-        informacion.setPreferredSize(new Dimension(280, 80));
+        informacion.setPreferredSize(new Dimension(280, 100));
         turno.setPreferredSize(new Dimension(120, 20));
         tablero.correrTiempo();
         tiempo.setText("Tiempo de Partida: " + tablero.tiempoActual + "    ");

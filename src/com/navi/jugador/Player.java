@@ -39,12 +39,15 @@ public class Player implements Serializable, Pintar, ActionListener {
         casillaActual.panelCentral.remove(botonPlayer);
         casillaActual = actual;
         casillaActual.panelCentral.add(botonPlayer);
-        casillaActual.referencia.accion(this);
+        //casillaActual.referencia.accion(this);
     }
 
     public void turnoJugador(JTextArea informacion){
         if(turnoPerdido == 0){
             tirarDados(informacion);
+        }
+        else{
+            turnoPerdido=0;
         }
     }
 
@@ -59,6 +62,12 @@ public class Player implements Serializable, Pintar, ActionListener {
                     String info = informacion.getText();
                     String tipoCasilla = compararCasillas(casillaActual.referencia);
                     informacion.setText(info + "El número del dado es " + numeroDado + "\n" + NOMBRE +" se movio a la casilla: " + casillaActual.referencia.getNumeroCasilla() + "\n" + tipoCasilla);
+                    casillaActual.referencia.accion(this);
+                    if(!(casillaActual.referencia instanceof CasillaNula)){
+                        info = informacion.getText();
+                        tipoCasilla = compararCasillas(casillaActual.referencia);
+                        informacion.setText(info + "La anterior casillas movio la ficha a la casillas:  " + casillaActual.referencia.getNumeroCasilla() + "\n" + tipoCasilla);
+                    }
                     encontrado = true;
                     break;
                 }
