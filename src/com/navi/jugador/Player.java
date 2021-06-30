@@ -39,7 +39,13 @@ public class Player implements Serializable, Pintar, ActionListener {
         casillaActual.panelCentral.remove(botonPlayer);
         casillaActual = actual;
         casillaActual.panelCentral.add(botonPlayer);
-        //casillaActual.referencia.accion(this);
+        casillaActual.referencia.accion(this);
+    }
+    public void colocarJugador(VisualCasillas actual, String xd){
+        casillaActual.panelCentral.remove(botonPlayer);
+        casillaActual = actual;
+        casillaActual.panelCentral.add(botonPlayer);
+
     }
 
     public void turnoJugador(JTextArea informacion){
@@ -58,16 +64,11 @@ public class Player implements Serializable, Pintar, ActionListener {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[i].length; j++) {
                 if(tablero[i][j].getNumeroCasilla() == casillaActual.referencia.getNumeroCasilla() + numeroDado){
-                    colocarJugador(VisualTablero.casillasVisuales[i][j]);
+                    colocarJugador(VisualTablero.casillasVisuales[i][j], "xd");
                     String info = informacion.getText();
                     String tipoCasilla = compararCasillas(casillaActual.referencia);
                     informacion.setText(info + "El número del dado es " + numeroDado + "\n" + NOMBRE +" se movio a la casilla: " + casillaActual.referencia.getNumeroCasilla() + "\n" + tipoCasilla);
                     casillaActual.referencia.accion(this);
-                    if(!(casillaActual.referencia instanceof CasillaNula) && !(casillaActual.referencia instanceof PierdeTurno) && !(casillaActual.referencia instanceof TiraDados)){
-                        info = informacion.getText();
-                        tipoCasilla = compararCasillas(casillaActual.referencia);
-                        informacion.setText(info + "La anterior casillas movio la ficha a la casillas:  " + casillaActual.referencia.getNumeroCasilla() + "\n" + tipoCasilla);
-                    }
                     encontrado = true;
                     break;
                 }
@@ -84,10 +85,10 @@ public class Player implements Serializable, Pintar, ActionListener {
             a = "Casilla Normal: no ocurre nada...";
         }
         else if(casilla instanceof Avanza){
-            a = "Casilla Avanzar: avanzas " + ((Avanza) casilla).posicion + " casillas";
+            a = "Casilla Avanzar: avanzas " + ((Avanza) casilla).posicion + " casillas\n" + NOMBRE +" se movio a la casilla: " + (casillaActual.referencia.getNumeroCasilla() + ((Avanza) casilla).posicion);
         }
         else if(casilla instanceof Retrocede){
-            a = "Casilla Retroceder: retrocedes " + ((Retrocede) casilla).posicion + " casillas";
+            a = "Casilla Retroceder: retrocedes " + ((Retrocede) casilla).posicion + " casillas\n" + NOMBRE +" se movio a la casilla: " + (casillaActual.referencia.getNumeroCasilla() - ((Retrocede) casilla).posicion);
         }
         else if(casilla instanceof PierdeTurno){
             a = "Pierde Turno: Perdiste un turno en la siguiente vuelta";
@@ -96,10 +97,17 @@ public class Player implements Serializable, Pintar, ActionListener {
             a = "Tira Dados: puedes volver a tirar los Dados";
         }
         else if(casilla instanceof Subida){
-            a = "Casilla Subir: Subiste hacia la casilla " + casilla.getNumeroCasilla();
+            int casillaADondeSeMueve = (VisualTablero.tablero.getCasillas()[((Subida) casilla).yFinal-1][((Subida) casilla).xFinal-1].getNumeroCasilla());
+            if(((Subida) casilla).yFinal > (VisualTablero.tablero.getY()) && ((Subida) casilla).xFinal > (VisualTablero.tablero.getX())) {
+                a = "Casilla Subir: Subiste hacia la casilla " + casillaADondeSeMueve + "\n" + NOMBRE + " se movio a la casilla: " + casillaADondeSeMueve;
+            }
         }
         else if(casilla instanceof Bajada){
-            a = "Casilla Bajar: Bajaste hacia la casilla " + casilla.getNumeroCasilla();
+            int casillaADondeSeMueve = (VisualTablero.tablero.getCasillas()[((Bajada) casilla).yFinal][((Bajada) casilla).xFinal].getNumeroCasilla());
+            if(((Bajada) casilla).yFinal > (VisualTablero.tablero.getY()) && ((Bajada) casilla).xFinal > (VisualTablero.tablero.getX())){
+                a = "Casilla Bajar: Bajaste hacia la casilla " + casillaADondeSeMueve +"\n" + NOMBRE +" se movio a la casilla: " + casillaADondeSeMueve;
+            }
+
         }
         return a;
     }

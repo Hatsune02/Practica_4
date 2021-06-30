@@ -177,6 +177,7 @@ public class VisualTablero extends JFrame implements ActionListener, Pintar {
                 }
                 ArregloPlayer.cantidadPlayersPartida = 0;
                 this.setVisible(false);
+                ganador = false;
             }
             mostrarTurnoActual();
             SwingUtilities.updateComponentTreeUI(this);

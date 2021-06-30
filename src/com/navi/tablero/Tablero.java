@@ -3,6 +3,8 @@ package com.navi.tablero;
 import com.navi.Visual.visualTablero.VisualTablero;
 import com.navi.tablero.casillas.*;
 
+import javax.swing.*;
+
 public class Tablero implements Runnable{
     public int tiempoActual = 0;
     private int x;
@@ -33,33 +35,69 @@ public class Tablero implements Runnable{
     }
 
     public void casillaAvanzar(int x, int y, int posicion){
-        int n = casillas[y][x].getNumeroCasilla();
-        casillas[y][x] = new Avanza(x, y , posicion, n);
+        if(x < this.x && y < this.y){
+            int n = casillas[y][x].getNumeroCasilla();
+            casillas[y][x] = new Avanza(x, y , posicion, n);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No puedes una casilla fuera del tablero :3");
+        }
+
     }
 
     public void casillaRetroceder(int x, int y, int posicion){
-        int n = casillas[y][x].getNumeroCasilla();
-        casillas[y][x] = new Retrocede(x,y, posicion, n);
+        if(x < this.x && y < this.y){
+            int n = casillas[y][x].getNumeroCasilla();
+            casillas[y][x] = new Retrocede(x,y, posicion, n);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No puedes una casilla fuera del tablero :3");
+        }
+
     }
 
     public void casillaPierdeTurno(int x, int y){
-        int n = casillas[y][x].getNumeroCasilla();
-        casillas[y][x] = new PierdeTurno(x,y, n);
+        if(x < this.x && y < this.y){
+            int n = casillas[y][x].getNumeroCasilla();
+            casillas[y][x] = new PierdeTurno(x,y, n);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No puedes una casilla fuera del tablero :3");
+        }
+
     }
 
     public void casillaTiraDados(int x, int y){
-        int n = casillas[y][x].getNumeroCasilla();
-        casillas[y][x] = new TiraDados(x,y, n);
+        if(x < this.x && y < this.y){
+            int n = casillas[y][x].getNumeroCasilla();
+            casillas[y][x] = new TiraDados(x,y, n);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No puedes una casilla fuera del tablero :3");
+        }
+
     }
 
     public void casillaSubir(int x, int y, int xFinal, int yFinal){
-        int n = casillas[y][x].getNumeroCasilla();
-        casillas[y][x] = new Subida(x,y,xFinal,yFinal, n);
+        if(x < this.x && y < this.y){
+            int n = casillas[y][x].getNumeroCasilla();
+            casillas[y][x] = new Subida(x,y,xFinal,yFinal, n);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No puedes una casilla fuera del tablero :3");
+        }
+
     }
 
     public void casillaBajar(int x, int y, int xFinal, int yFinal){
-        int n = casillas[y][x].getNumeroCasilla();
-        casillas[y][x] = new Bajada(x,y,xFinal,yFinal, n);
+        if(x < this.x && y < this.y){
+            int n = casillas[y][x].getNumeroCasilla();
+            casillas[y][x] = new Bajada(x,y,xFinal,yFinal, n);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No puedes una casilla fuera del tablero :3");
+        }
+
     }
 
     public void correrTiempo(){

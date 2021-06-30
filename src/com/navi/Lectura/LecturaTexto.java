@@ -29,9 +29,6 @@ public class LecturaTexto {
     static String[][] casillasBajada = new String[100][];
     static int cantidadCasillasBajada = 0;
 
-    public static void main(String[] args){
-        LeerArchivos();
-    }
     public static void LeerArchivos(){
 
         JFileChooser cargar = new JFileChooser();
@@ -129,7 +126,7 @@ public class LecturaTexto {
                 JOptionPane.showMessageDialog(null, "Error número requerido línea: " + casillasRetroceder[i][t+1]);
             }
             else{
-                VisualTablero.tablero.casillaRetroceder(Integer.parseInt(casillasRetroceder[i][1]), Integer.parseInt(casillasRetroceder[i][2]), Integer.parseInt(casillasAvanzar[i][3]));
+                VisualTablero.tablero.casillaRetroceder(Integer.parseInt(casillasRetroceder[i][1]), Integer.parseInt(casillasRetroceder[i][2]), Integer.parseInt(casillasRetroceder[i][3]));
             }
 
         }
